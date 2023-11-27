@@ -11,11 +11,11 @@ from jax.tree_util import tree_map
 from jaxtyping import Array, Bool, Float, Integer, Num
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .geometry import Camera, Interpolation, Viewport, interpolate
-from .shader import (
+from _backport import Tuple
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, Interpolation, Viewport, interpolate
+from shader import (
     ID,
     MixedExtraT,
     MixerOutput,
@@ -25,7 +25,7 @@ from .shader import (
     ShaderExtraInputT,
     VaryingT,
 )
-from .types import (
+from render_types import (
     BoolV,
     Buffers,
     CanvasMask,
@@ -40,7 +40,6 @@ from .types import (
     ZBuffer,
 )
 
-jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 
 RowIndices = Integer[Array, "row_batches row_batch_size"]
 """Indices of the rows in the buffers to be processed in this batch."""

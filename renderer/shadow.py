@@ -6,12 +6,12 @@ import jax.lax as lax
 import jax.numpy as jnp
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple
-from ._meta_utils import add_tracing_name
-from .geometry import Camera, View, Viewport
-from .pipeline import render
-from .shaders.depth import DepthExtraInput, DepthShader
-from .types import (
+from _backport import Tuple
+from _meta_utils import add_tracing_name
+from geometry import Camera, View, Viewport
+from pipeline import render
+from shaders.depth import DepthExtraInput, DepthShader
+from render_types import (
     Buffers,
     Colour,
     FaceIndices,

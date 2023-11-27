@@ -3,8 +3,8 @@ import jax.numpy as jnp
 from jaxtyping import Array, Float
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ..model import Model
-from ..types import (
+from model import Model
+from render_types import (
     FaceIndices,
     Normals,
     SpecularMap,

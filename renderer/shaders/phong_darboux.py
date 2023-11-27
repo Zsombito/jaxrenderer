@@ -22,7 +22,7 @@ from ..geometry import (
     to_homogeneous,
 )
 from ..shader import ID, MixerOutput, PerFragment, PerVertex, Shader
-from ..types import (
+from ..render_types import (
     BoolV,
     Colour,
     FaceIndices,

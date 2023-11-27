@@ -10,10 +10,10 @@ import jax.numpy as jnp
 from jaxtyping import Array, Float, Integer, Num
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple, TypeAlias
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .types import FloatV, JaxFloating, NumV, Triangle2Df, Vec2f, Vec2i, Vec3f, Vec4f
+from _backport import Tuple, TypeAlias
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from render_types import FloatV, JaxFloating, NumV, Triangle2Df, Vec2f, Vec2i, Vec3f, Vec4f
 
 # Transform matrix that takes a batch of homogeneous 3D vertices and transform
 # them into 2D cartesian vertices in screen space + Z value (making it 3D)

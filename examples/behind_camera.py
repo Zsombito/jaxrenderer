@@ -2,7 +2,7 @@ import jax.lax as lax
 import jax.numpy as jnp
 from jaxtyping import Array, UInt8
 
-from renderer import (
+from ..renderer import (
     CameraParameters,
     LightParameters,
     List,

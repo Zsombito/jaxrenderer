@@ -12,11 +12,11 @@ from jaxtyping import Array, Bool, Float, Shaped
 from jaxtyping import PyTree  # pyright: ignore[reportUnknownVariableType]
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple, TypeAlias
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .geometry import Camera, Interpolation, interpolate
-from .types import (
+from _backport import Tuple, TypeAlias
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, Interpolation, interpolate
+from render_types import (
     FALSE_ARRAY,
     INF_ARRAY,
     TRUE_ARRAY,
@@ -28,7 +28,6 @@ from .types import (
     Vec4f,
 )
 
-jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 
 ID: TypeAlias = IntV
 

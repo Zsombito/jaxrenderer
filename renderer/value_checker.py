@@ -4,7 +4,7 @@ import jax.numpy as jnp
 from jaxtyping import Array, Integer
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from .types import BoolV, IntV
+from render_types import BoolV, IntV
 
 
 @jaxtyped

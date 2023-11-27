@@ -11,11 +11,11 @@ from jax.tree_util import tree_map
 from jaxtyping import Array, Bool, Float, Integer, Num, Shaped
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import List, NamedTuple, Sequence, Tuple, TypeAlias
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .geometry import Camera, transform_matrix_from_rotation
-from .types import (
+from _backport import List, NamedTuple, Sequence, Tuple, TypeAlias
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, transform_matrix_from_rotation
+from render_types import (
     FALSE_ARRAY,
     BoolV,
     FaceIndices,
@@ -29,7 +29,7 @@ from .types import (
     Vec4f,
     Vertices,
 )
-from .value_checker import index_in_bound
+from value_checker import index_in_bound
 
 ModelMatrix: TypeAlias = Float[Array, "4 4"]
 

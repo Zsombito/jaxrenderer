@@ -9,13 +9,13 @@ import jax.numpy as jnp
 from jaxtyping import Array, Bool, Float, Integer
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from .._backport import Tuple
-from .._meta_utils import add_tracing_name
-from .._meta_utils import typed_jit as jit
-from ..geometry import Camera, normalise, to_homogeneous
-from ..model import MergedModel
-from ..shader import ID, MixerOutput, PerFragment, PerVertex, Shader
-from ..types import (
+from _backport import Tuple
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, normalise, to_homogeneous
+from model import MergedModel
+from shader import ID, MixerOutput, PerFragment, PerVertex, Shader
+from render_types import (
     BoolV,
     Colour,
     FloatV,
@@ -29,7 +29,6 @@ from ..types import (
     Vec4f,
 )
 
-jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 
 
 class PhongReflectionTextureExtraInput(NamedTuple):

@@ -10,22 +10,22 @@ from jax.tree_util import tree_map
 from jaxtyping import Array, Bool, Integer
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple, TypeAlias
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .geometry import Camera, Projection, View, Viewport, normalise
-from .model import MergedModel, ModelObject, merge_objects
-from .pipeline import render
-from .shaders.phong_reflection import (
+from _backport import Tuple, TypeAlias
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, Projection, View, Viewport, normalise
+from model import MergedModel, ModelObject, merge_objects
+from pipeline import render
+from shaders.phong_reflection import (
     PhongReflectionTextureExtraInput,
     PhongReflectionTextureShader,
 )
-from .shaders.phong_reflection_shadow import (
+from shaders.phong_reflection_shadow import (
     PhongReflectionShadowTextureExtraInput,
     PhongReflectionShadowTextureShader,
 )
-from .shadow import Shadow
-from .types import (
+from shadow import Shadow
+from render_types import (
     Buffers,
     Canvas,
     Colour,

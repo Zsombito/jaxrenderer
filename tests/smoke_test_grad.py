@@ -7,7 +7,7 @@ import jax.numpy as jnp
 
 from renderer import Buffers, Camera, LightSource, render
 from renderer.shaders.gouraud import GouraudExtraInput, GouraudShader
-from renderer.types import FloatV
+from jaxrenderer.renderer.rendering_types import FloatV
 
 eye = jnp.array((0.0, 0, 2))  # pyright: ignore[reportUnknownMemberType]
 center = jnp.array((0.0, 0, 0))  # pyright: ignore[reportUnknownMemberType]

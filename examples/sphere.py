@@ -2,7 +2,7 @@ import jax
 import jax.lax as lax
 import jax.numpy as jnp
 
-from renderer import (
+from ..renderer import (
     CameraParameters,
     LightParameters,
     Renderer,

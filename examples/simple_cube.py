@@ -1,6 +1,6 @@
 import jax.numpy as jnp
 
-import renderer
+from ..renderer import renderer
 
 ImageWidth: int = 640
 ImageHeight: int = 480

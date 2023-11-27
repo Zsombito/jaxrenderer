@@ -13,7 +13,7 @@ from .._meta_utils import add_tracing_name
 from .._meta_utils import typed_jit as jit
 from ..geometry import Camera, normalise, to_homogeneous
 from ..shader import ID, PerFragment, PerVertex, Shader
-from ..types import BoolV, Colour, FloatV, LightSource, Vec2f, Vec3f, Vec4f
+from ..render_types import BoolV, Colour, FloatV, LightSource, Vec2f, Vec3f, Vec4f
 
 jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 

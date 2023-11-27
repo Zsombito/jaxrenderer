@@ -9,7 +9,7 @@ from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 import numpy as np
 
 from renderer import Tuple, TypeAlias
-from renderer.types import FaceIndices, Normals, Texture, UVCoordinates, Vertices
+from jaxrenderer.renderer.rendering_types import FaceIndices, Normals, Texture, UVCoordinates, Vertices
 
 jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 

@@ -1,5 +1,6 @@
 import jax.lax as lax
 import jax.numpy as jnp
+import jax
 from jaxtyping import Array, UInt8
 
 from renderer import (
@@ -116,23 +117,24 @@ img = Renderer.get_camera_image(
 rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
 images.append(rgb_array)
 
-img = Renderer.get_camera_image(
-    objects=[
-        scene.objects[obj_id]
-        for obj_id in [
-            cube_instance_id,
-            capsulex_instance_id,
-            capsuley_instance_id,
-        ]
-    ],
-    light=light,
-    camera=camera,
-    width=width,
-    height=height,
-    shadow_param=shadow_param,
-)
-rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
-images.append(rgb_array)
+with jax.profiler.trace("./jax-trace", create_perfetto_link=True):
+    img = Renderer.get_camera_image(
+        objects=[
+            scene.objects[obj_id]
+            for obj_id in [
+                cube_instance_id,
+                capsulex_instance_id,
+                capsuley_instance_id,
+            ]
+        ],
+        light=light,
+        camera=camera,
+        width=width,
+        height=height,
+        shadow_param=shadow_param,
+    )
+    rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
+    images.append(rgb_array)
 
 img = Renderer.get_camera_image(
     objects=[
@@ -212,4 +214,4 @@ ani = animation.ArtistAnimation(
     repeat_delay=0,
 )
 
-plt.show()  # pyright: ignore[reportUnknownMemberType]
+#plt.show()  # pyright: ignore[reportUnknownMemberType]

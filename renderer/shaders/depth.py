@@ -7,14 +7,13 @@ import jax
 from jaxtyping import Array, Float
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from .._backport import Tuple
-from .._meta_utils import add_tracing_name
-from .._meta_utils import typed_jit as jit
-from ..geometry import Camera, to_homogeneous
-from ..shader import ID, PerVertex, Shader
-from ..types import Vec4f
+from _backport import Tuple
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from geometry import Camera, to_homogeneous
+from shader import ID, PerVertex, Shader
+from render_types import Vec4f
 
-jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 
 
 class DepthExtraInput(NamedTuple):

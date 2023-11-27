@@ -11,7 +11,7 @@ from renderer.geometry import Camera, normalise, to_homogeneous
 from renderer.pipeline import render
 from renderer.shader import ID, MixerOutput, PerFragment, PerVertex, Shader
 from renderer.shaders.gouraud import GouraudExtraInput, GouraudShader
-from renderer.types import (
+from jaxrenderer.renderer.rendering_types import (
     BoolV,
     Buffers,
     Colour,
@@ -327,5 +327,6 @@ def test_perspective_interpolation():
     empty_pixels = (canvas == default_pixel).all(axis=2).sum()  # pyright: ignore
     assert empty_pixels > (width * height // 2), "The canvas should be mostly empty"
     assert empty_pixels < (width * height), "The canvas should not be all empty"
+    
 
     # TODO: find a way to specify the effect of "perspective transform"

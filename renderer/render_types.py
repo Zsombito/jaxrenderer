@@ -6,7 +6,7 @@ import jax.numpy as jnp
 from jaxtyping import Array, Bool, Float, Integer, Num
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import JaxFloating, JaxInteger, NamedTuple, Tuple, Type, TypeAlias
+from _backport import JaxFloating, JaxInteger, NamedTuple, Tuple, Type, TypeAlias
 
 __all__ = [
     "JaxFloating",
@@ -40,7 +40,6 @@ __all__ = [
     "Buffers",
 ]
 
-jax.config.update("jax_array", True)  # pyright: ignore[reportUnknownMemberType]
 
 BoolV: TypeAlias = Bool[Array, ""]
 """JAX Array with single bool value.""" ""

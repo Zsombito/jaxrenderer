@@ -6,12 +6,12 @@ import jax.numpy as jnp
 from jaxtyping import Array, Bool, Float
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from renderer import Tuple, jit
-from renderer.geometry import Camera, normalise, to_homogeneous
-from renderer.pipeline import render
-from renderer.shader import ID, MixerOutput, PerFragment, PerVertex, Shader
-from renderer.shaders.gouraud import GouraudExtraInput, GouraudShader
-from renderer.types import (
+from ..renderer import Tuple, jit
+from ..renderer.geometry import Camera, normalise, to_homogeneous
+from ..renderer.pipeline import render
+from ..renderer.shader import ID, MixerOutput, PerFragment, PerVertex, Shader
+from ..renderer.shaders.gouraud import GouraudExtraInput, GouraudShader
+from ..renderer.rendering_types import (
     BoolV,
     Buffers,
     Colour,

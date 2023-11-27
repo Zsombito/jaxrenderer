@@ -9,10 +9,10 @@ import jax.numpy as jnp
 from jaxtyping import Array, Integer, Num, Shaped
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from ._backport import Tuple
-from ._meta_utils import add_tracing_name
-from ._meta_utils import typed_jit as jit
-from .types import Canvas, IntV, Texture, ZBuffer
+from _backport import Tuple
+from _meta_utils import add_tracing_name
+from _meta_utils import typed_jit as jit
+from render_types import Canvas, IntV, Texture, ZBuffer
 
 
 @jaxtyped

@@ -5,7 +5,7 @@ from typing import Any, Callable, Protocol, TypeVar, cast
 
 import jax
 
-from ._backport import DictT, ParamSpec
+from _backport import DictT, ParamSpec
 
 __all__ = ["add_tracing_name", "export", "typed_jit"]
 
