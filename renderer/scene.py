@@ -7,11 +7,11 @@ import jax.numpy as jnp
 from jaxtyping import Array, Float
 from jaxtyping import jaxtyped  # pyright: ignore[reportUnknownVariableType]
 
-from _backport import DictT, Tuple, replace_dict
-from model import Model, ModelObject
-from shapes.capsule import UpAxis, create_capsule
-from shapes.cube import create_cube
-from render_types import BoolV, SpecularMap, Texture, Vec3f, Vec4f
+from ._backport import DictT, Tuple, replace_dict
+from .model import Model, ModelObject
+from .shapes.capsule import UpAxis, create_capsule
+from .shapes.cube import create_cube
+from .render_types import BoolV, SpecularMap, Texture, Vec3f, Vec4f
 
 GUID = NewType("GUID", int)
 

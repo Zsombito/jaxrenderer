@@ -14,7 +14,7 @@ from renderer import (
     TypeAlias,
     UpAxis,
     build_texture_from_PyTinyrenderer,
-    transpose_for_display,
+    transpose_for_display
 )
 
 # PROCESS: Set up models and objects
@@ -100,6 +100,8 @@ CanvasT: TypeAlias = UInt8[Array, "width height"]
 
 images: List[CanvasT] = []
 
+
+
 img = Renderer.get_camera_image(
     objects=[
         scene.objects[obj_id]
@@ -115,9 +117,53 @@ img = Renderer.get_camera_image(
     shadow_param=shadow_param,
 )
 rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
+
 images.append(rgb_array)
 
-with jax.profiler.trace("./jax-trace", create_perfetto_link=True):
+img = Renderer.get_camera_image(
+    objects=[
+        scene.objects[obj_id]
+        for obj_id in [
+            cube_instance_id,
+            capsulex_instance_id,
+            capsuley_instance_id,
+        ]
+    ],
+    light=light,
+    camera=camera,
+    width=width,
+    height=height,
+    shadow_param=shadow_param,
+)
+rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
+images.append(rgb_array)
+
+img = Renderer.get_camera_image(
+    objects=[
+        scene.objects[obj_id]
+        for obj_id in [
+            cube_instance_id,
+            capsulex_instance_id,
+            capsuley_instance_id,
+            capsulez_instance_id,
+        ]
+    ],
+    light=light,
+    camera=camera,
+    width=width,
+    height=height,
+    shadow_param=shadow_param,
+)
+rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
+images.append(rgb_array)
+
+scene, cube_model = scene.add_cube(
+    half_extents=(1.5, 1.5, 0.03),
+    diffuse_map=jnp.ones((1, 1, 3)),  # pyright: ignore[reportUnknownMemberType]
+    texture_scaling=(16.0, 16.0),
+)
+
+with jax.profiler.trace("./jax-trace", create_perfetto_link=False):
     img = Renderer.get_camera_image(
         objects=[
             scene.objects[obj_id]
@@ -125,6 +171,7 @@ with jax.profiler.trace("./jax-trace", create_perfetto_link=True):
                 cube_instance_id,
                 capsulex_instance_id,
                 capsuley_instance_id,
+                capsulez_instance_id,
             ]
         ],
         light=light,
@@ -136,82 +183,44 @@ with jax.profiler.trace("./jax-trace", create_perfetto_link=True):
     rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
     images.append(rgb_array)
 
-img = Renderer.get_camera_image(
-    objects=[
-        scene.objects[obj_id]
-        for obj_id in [
-            cube_instance_id,
-            capsulex_instance_id,
-            capsuley_instance_id,
-            capsulez_instance_id,
-        ]
-    ],
-    light=light,
-    camera=camera,
-    width=width,
-    height=height,
-    shadow_param=shadow_param,
-)
-rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
-images.append(rgb_array)
-
-img = Renderer.get_camera_image(
-    objects=[
-        scene.objects[obj_id]
-        for obj_id in [
-            cube_instance_id,
-            capsulex_instance_id,
-            capsuley_instance_id,
-            capsulez_instance_id,
-        ]
-    ],
-    light=light,
-    camera=camera,
-    width=width,
-    height=height,
-    shadow_param=shadow_param,
-)
-rgb_array = lax.clamp(0.0, img * 255, 255.0).astype(jnp.uint8)  # pyright: ignore
-images.append(rgb_array)
-
 # PROCESS: show
 
-from typing import cast
+#from typing import cast
 
-import matplotlib.animation as animation
-import matplotlib.figure as figure
-import matplotlib.image as mimage
-import matplotlib.pyplot as plt
+#import matplotlib.animation as animation
+#import matplotlib.figure as figure
+#import matplotlib.image as mimage
+#import matplotlib.pyplot as plt
 
-fig: figure.Figure
-fig, ax = plt.subplots()  # pyright: ignore
+#fig: figure.Figure
+#fig, ax = plt.subplots()  # pyright: ignore
 
-# ims is a list of lists, each row is a list of artists to draw in the
-# current frame; here we are just animating one artist, the image, in
-# each frame
-ims: List[List[mimage.AxesImage]] = []
-for i, img in enumerate(images):
-    im = cast(
-        mimage.AxesImage,
-        ax.imshow(  # pyright: ignore[reportUnknownMemberType]
-            transpose_for_display(img),
-            animated=True,
-        ),
-    )
-    if i == 0:
-        # show an initial one first
-        ax.imshow(  # pyright: ignore[reportUnknownMemberType]
-            transpose_for_display(img),
-        )
+## ims is a list of lists, each row is a list of artists to draw in the
+## current frame; here we are just animating one artist, the image, in
+## each frame
+#ims: List[List[mimage.AxesImage]] = []
+#for i, img in enumerate(images):
+    #im = cast(
+        #mimage.AxesImage,
+        #ax.imshow(  # pyright: ignore[reportUnknownMemberType]
+            #transpose_for_display(img),
+            #animated=True,
+        #),
+    #)
+    #if i == 0:
+        ## show an initial one first
+        #ax.imshow(  # pyright: ignore[reportUnknownMemberType]
+            #transpose_for_display(img),
+        #)
 
-    ims.append([im])
+    #ims.append([im])
 
-ani = animation.ArtistAnimation(
-    fig,
-    ims,
-    interval=500,
-    blit=True,
-    repeat_delay=0,
-)
+#ani = animation.ArtistAnimation(
+    #fig,
+    #ims,
+    #interval=500,
+    #blit=True,
+    #repeat_delay=0,
+#)
 
-#plt.show()  # pyright: ignore[reportUnknownMemberType]
+##plt.show()  # pyright: ignore[reportUnknownMemberType]

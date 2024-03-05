@@ -5,8 +5,8 @@ description = "Jax implementation of rasterizer renderer."
 authors = ["Joey Teng <joey.teng.dev@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/JoeyTeng/jaxrenderer"
-repository = "https://github.com/JoeyTeng/jaxrenderer"
+homepage = "https://github.com/Zsombito/jaxrenderer"
+repository = "https://github.com/Zsombito/jaxrenderer"
 classifiers = [
     "Topic :: Multimedia :: Graphics :: 3D Rendering",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",

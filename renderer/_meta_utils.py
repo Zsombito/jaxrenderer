@@ -19,14 +19,13 @@ def add_tracing_name(func: Callable[ArgT, RetT]) -> Callable[ArgT, RetT]:
     members: DictT[str, str]
     members = dict(inspect.getmembers(func, lambda v: isinstance(v, str)))
     annotation: str = (
-        f"{members.get('__module__', '')}" f":{members.get('__qualname__', '')}"
+        f"{members.get('__module__', '')}" f":{members.get('__name__', '')}"
     )
 
     @functools.wraps(func)
     def wrapper(*args: ArgT.args, **kwargs: ArgT.kwargs) -> RetT:
         with jax.named_scope(annotation):
-            with jax.profiler.TraceAnnotation(annotation):
-                return func(*args, **kwargs)
+            return func(*args, **kwargs)
 
     return wrapper
 

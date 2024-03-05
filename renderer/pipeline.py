@@ -264,7 +264,8 @@ def _postprocessing(
             # See google/brax#8409 for why `_when_keep_primitive` is always
             # executed.
             # TODO: change back to `lax.cond` when it does not force execute both branches under vmap.
-            r = _when_in_triangle(clip_coef, w_reciprocal)
+            with jax.named_scope("triangle test"):
+                r = _when_in_triangle(clip_coef, w_reciprocal)
             gl_FragCoord, gl_FrontFacing, gl_PointCoord, true_clip_coef = r
 
             return (
@@ -291,23 +292,25 @@ def _postprocessing(
             barycentric_clip: Vec3f,
         ) -> Tuple[PerFragment, VaryingT]:
             # PROCESS: Interpolation
-            varying: VaryingT = shader.interpolate(
-                values=values,
-                barycentric_screen=barycentric_screen,
-                barycentric_clip=barycentric_clip,
-            )
+            with jax.named_scope("interpolation"):
+                varying: VaryingT = shader.interpolate(
+                    values=values,
+                    barycentric_screen=barycentric_screen,
+                    barycentric_clip=barycentric_clip,
+                )
             assert isinstance(varying, tuple)
 
             # PROCESS: Fragment Processing
             per_frag: PerFragment
             extra_fragment_output: VaryingT
-            per_frag, extra_fragment_output = shader.fragment(
-                gl_FragCoord=gl_FragCoord,
-                gl_FrontFacing=gl_FrontFacing,
-                gl_PointCoord=gl_PointCoord,
-                varying=varying,
-                extra=extra,
-            )
+            with jax.named_scope("fragmentProcessing"):
+                per_frag, extra_fragment_output = shader.fragment(
+                    gl_FragCoord=gl_FragCoord,
+                    gl_FrontFacing=gl_FrontFacing,
+                    gl_PointCoord=gl_PointCoord,
+                    varying=varying,
+                    extra=extra,
+                )
             assert isinstance(per_frag, PerFragment)
             assert isinstance(extra_fragment_output, tuple)
 

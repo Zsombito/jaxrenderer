@@ -2,7 +2,7 @@ import jax
 import jax.lax as lax
 import jax.numpy as jnp
 
-from ..renderer import (
+from renderer import (
     CameraParameters,
     LightParameters,
     Renderer,
@@ -86,4 +86,3 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots()  # pyright: ignore
 ax.imshow(transpose_for_display(rgb_array))  # pyright: ignore[reportUnknownMemberType]
 
-plt.show()  # pyright: ignore[reportUnknownMemberType]
